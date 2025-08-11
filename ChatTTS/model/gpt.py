@@ -226,6 +226,7 @@ class GPT(nn.Module):
                 max_cache_length is not None
                 and attention_mask is not None
                 and cache_length + input_ids.shape[1] > max_cache_length
+                and max_cache_length > 0  # Add safety check
             ):
                 attention_mask = attention_mask.narrow(
                     1, -max_cache_length, max_cache_length
